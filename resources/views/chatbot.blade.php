@@ -537,7 +537,7 @@
 
       function getChatGPTResponse(message) {
         const apiUrl = "https://api.openai.com/v1/chat/completions";
-        const API_KEY = "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";
+        const API_KEY = "API_CHAT_GPT";
 
         fetch(apiUrl, {
           method: "POST",
