@@ -5,7 +5,7 @@
 @section("content")
   <div class="col">
     <div class="card mb-4">
-      <form method="POST" action="perencanaan-hitung">
+      <form method="POST" action="hasil-pupuk">
         @csrf
         <h5 class="card-header">Hitung Kebutuhan Pupuk</h5>
         <div class="card-body">

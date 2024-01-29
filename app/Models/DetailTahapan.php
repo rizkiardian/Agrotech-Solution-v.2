@@ -19,4 +19,8 @@ class DetailTahapan extends Model
         'deskripsi_kegiatan',
         'gambar',
     ];
+
+    public function get_tahapan($nama_kolom, $data){
+        return $this->where($nama_kolom, $data)->get();
+    }
 }

@@ -8,7 +8,7 @@ class DeteksiHamaController extends Controller
 {
     public function index()
     {
-        return view('user/deteksi');
+        return view('user/deteksi_hama');
     }
 
     public function hasil()

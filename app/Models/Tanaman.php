@@ -24,4 +24,9 @@ class Tanaman extends Model
         'create_date',
         'update_date'
     ];
+
+    public function detail_budidaya()
+    {
+        return $this->hasMany(DetailBudidaya::class, 'id_tanaman', 'id_tanaman');
+    }
 }

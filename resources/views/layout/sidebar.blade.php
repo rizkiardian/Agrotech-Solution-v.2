@@ -1,21 +1,14 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
     <a href="/dashboard-user" class="app-brand-link">
-      <img
-        class="card-img"
-        src="../assets/img/icons/brands/logo.png"
-        alt="Card image cap"
-      />
+      <img class="card-img" src="../assets/img/icons/brands/logo.png" alt="Card image cap" />
 
       <span class="app-brand-text demo menu-text fw-bolder ms-2">
         Agro Tech
       </span>
     </a>
 
-    <a
-      href="/dashboard-user"
-      class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"
-    >
+    <a href="/dashboard-user" class="layout-menu-toggle menu-link text-large d-block d-xl-none ms-auto">
       <i class="bx bx-chevron-left bx-sm align-middle"></i>
     </a>
   </div>
@@ -24,9 +17,7 @@
 
   <ul class="menu-inner py-1">
     <!-- Dashboard -->
-    <li
-      class="menu-item {{ request()->is("dashboard-user") ? "active" : "" }}"
-    >
+    <li class="menu-item {{ request()->is('dashboard-user') ? 'active' : '' }}">
       <a href="/dashboard-user" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Dashboard</div>
@@ -38,43 +29,37 @@
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Fitur</span>
     </li>
-    <li class="menu-item {{ request()->is("tanaman") ? "active" : "" }}">
+    <li class="menu-item {{ str_contains(request()->url(), 'tanaman') ? 'active' : '' }}">
       <a href="/tanaman" class="menu-link">
         <i class="menu-icon tf-icons bx bx-leaf"></i>
         <div data-i18n="Analytics">Tips Budidya</div>
       </a>
     </li>
-    <li
-      class="menu-item {{ request()->is("perencanaan") || request()->is("#belumaada") ? "active" : "" }}"
-    >
+    <li class="menu-item {{ str_contains(request()->url(), 'perhitungan') ? 'active' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
         <div data-i18n="Account Settings">Perencanaan</div>
       </a>
       <ul class="menu-sub">
-        <li
-          class="menu-item {{ request()->is("perencanaan") ? "active" : "" }}"
-        >
-          <a href="/perencanaan" class="menu-link active">
+        <li class="menu-item {{ str_contains(request()->url(), 'perhitungan-pupuk') ? 'active' : '' }}">
+          <a href="/perhitungan-pupuk" class="menu-link active">
             <div data-i18n="Account">Perhitungan pupuk</div>
           </a>
         </li>
-        <li
-          class="menu-item {{ request()->is("#belumaada") ? "active" : "" }}"
-        >
-          <a href="#" class="menu-link">
+        <li class="menu-item {{ str_contains(request()->url(), 'perhitungan-air') ? 'active' : '' }}">
+          <a href="/perhitungan-air" class="menu-link">
             <div data-i18n="Notifications">Perhitungan Kebutuhan Air</div>
           </a>
         </li>
       </ul>
     </li>
-    <li class="menu-item {{ request()->is("deteksi-hama") ? "active" : "" }}">
+    <li class="menu-item {{ str_contains(request()->url(), 'deteksi-hama') ? 'active' : '' }}">
       <a href="/deteksi-hama" class="menu-link">
         <i class="menu-icon tf-icons bx bx-bug-alt"></i>
         <div data-i18n="Analytics">Deteksi Hama</div>
       </a>
     </li>
-    <li class="menu-item {{ request()->is("chatbot") ? "active" : "" }}">
+    <li class="menu-item {{ str_contains(request()->url(), 'chatbot') ? 'active' : '' }}">
       <a href="/chatbot" class="menu-link">
         <i class="menu-icon tf-icons bx bx-atom"></i>
         <div data-i18n="Analytics">Tani AI</div>

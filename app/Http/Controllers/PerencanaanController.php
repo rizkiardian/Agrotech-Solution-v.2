@@ -17,10 +17,10 @@ class PerencanaanController extends Controller
     public function index()
     {
         $tanaman = $this->TabelTanaman->all();
-        return view('user/perencanaan', ['tanaman' => $tanaman]);
+        return view('user/hitung_pupuk', ['tanaman' => $tanaman]);
     }
 
-    public function hitung(Request $request)
+    public function hasil_pupuk(Request $request)
     {
         $validasi = $request->validate(
             [
@@ -53,12 +53,14 @@ class PerencanaanController extends Controller
         $hitung_fosfor = $tanaman->$fosfor * $luas_lahan;
         $kalium = $request->kalium;
         $hitung_kalium = $tanaman->$kalium * $luas_lahan;
+        
         // pupuk berisi nama pupuk, perhitungan pupuk dalam kg, jumlah karung
         $pupuk = [
             [$nitrogen, $hitung_nitrogen, $hitung_nitrogen/50],
             [$fosfor, $hitung_fosfor, $hitung_fosfor/50],
             [$kalium, $hitung_kalium, $hitung_kalium/50],
         ];
+
         return view('user/hasil_pupuk', ['tanaman' => $tanaman, 'pupuk' => $pupuk]);
     }
 }

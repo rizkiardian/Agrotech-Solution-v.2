@@ -14,5 +14,11 @@ class TahapanBudidaya extends Model
 
     protected $fillable = [
         'tahapan_budidaya',
+        'gambar',
     ];
+
+    public function detail_budidaya()
+    {
+        return $this->hasMany(DetailBudidaya::class, 'id_budidaya', 'id_budidaya');
+    }
 }

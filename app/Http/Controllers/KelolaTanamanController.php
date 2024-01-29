@@ -29,68 +29,76 @@ class KelolaTanamanController extends Controller
 
     public function tambah()
     {
-        return view('admin/tambah_tanaman');
+        $tahapan_budidaya = $this->TabelTahapanBudidaya->all();
+        return view('admin/tambah_tanaman', ['tahapan_budidaya' => $tahapan_budidaya]);
+    }
+
+    public function cobatahapan()
+    {
+        return view('admin/cobatahapan');
     }
 
     public function tambah_proses(Request $request)
     {
-        $validasi = $request->validate(
-            [
-                'nama_tanaman' => ['required', 'max:255'],
-                'gambar' => ['required', 'image'],
-                'urea' => ['required', 'numeric'],
-                'ZA' => ['required', 'numeric'],
-                'TSP' => ['required', 'numeric'],
-                'SP36' => ['required', 'numeric'],
-                'KCL' => ['required', 'numeric'],
-                'MOP' => ['required', 'numeric'],
-            ],
-            [
-                'nama_tanaman.required' => 'Nama tanaman wajib diisi',
-                'nama_tanaman.max' => 'Nama tanaman terlalu panjang',
-                'gambar.required' => 'gambar wajib diisi',
-                'gambar.image' => 'File yang anda kirim bukan gambar',
-                'urea.required' => 'urea wajib diisi',
-                'urea.numeric' => 'urea harus angka',
-                'ZA.required' => 'ZA wajib diisi',
-                'ZA.numeric' => 'ZA harus angka',
-                'TSP.required' => 'TSP wajib diisi',
-                'TSP.numeric' => 'TSP harus angka',
-                'SP36.required' => 'SP36 wajib diisi',
-                'SP36.numeric' => 'SP36 harus angka',
-                'KCL.required' => 'KCL wajib diisi',
-                'KCL.numeric' => 'KCL harus angka',
-                'MOP.required' => 'MOP wajib diisi',
-                'MOP.numeric' => 'MOP harus angka',
-            ]
-        );
+        dd('ok');
+        // dd($$request->nama_tanaman);
+        // $validasi = $request->validate(
+        //     [
+        //         'nama_tanaman' => ['required', 'max:255'],
+        //         'gambar' => ['required', 'image'],
+        //         'urea' => ['required', 'numeric'],
+        //         'ZA' => ['required', 'numeric'],
+        //         'TSP' => ['required', 'numeric'],
+        //         'SP36' => ['required', 'numeric'],
+        //         'KCL' => ['required', 'numeric'],
+        //         'MOP' => ['required', 'numeric'],
+        //     ],
+        //     [
+        //         'nama_tanaman.required' => 'Nama tanaman wajib diisi',
+        //         'nama_tanaman.max' => 'Nama tanaman terlalu panjang',
+        //         'gambar.required' => 'gambar wajib diisi',
+        //         'gambar.image' => 'File yang anda kirim bukan gambar',
+        //         'urea.required' => 'urea wajib diisi',
+        //         'urea.numeric' => 'urea harus angka',
+        //         'ZA.required' => 'ZA wajib diisi',
+        //         'ZA.numeric' => 'ZA harus angka',
+        //         'TSP.required' => 'TSP wajib diisi',
+        //         'TSP.numeric' => 'TSP harus angka',
+        //         'SP36.required' => 'SP36 wajib diisi',
+        //         'SP36.numeric' => 'SP36 harus angka',
+        //         'KCL.required' => 'KCL wajib diisi',
+        //         'KCL.numeric' => 'KCL harus angka',
+        //         'MOP.required' => 'MOP wajib diisi',
+        //         'MOP.numeric' => 'MOP harus angka',
+        //     ]
+        // );
 
-        // pada gambar kita tampung dulu filenya
-        $gambar = $request->gambar;
-        $namaRandom = Str::random() . time();
-        $namaBaru = $namaRandom . '__gambar__' . $gambar->getClientOriginalName();
-        // $gambar->move('images', $namaBaru);
+        // // pada gambar kita tampung dulu filenya
+        // $gambar = $request->gambar;
+        // $namaRandom = Str::random() . time();
+        // $namaBaru = $namaRandom . '__gambar__' . $gambar->getClientOriginalName();
+        // // $gambar->move('images', $namaBaru);
 
-        // Simpan semuanya ke dalam session
-        $data = [
-            'nama_tanaman' => $request->nama_tanaman,
-            'gambar' => $namaBaru,
-            'urea' => $request->urea,
-            'ZA' => $request->ZA,
-            'TSP' => $request->TSP,
-            'SP36' => $request->SP36,
-            'KCL' => $request->KCL,
-            'MOP' => $request->MOP,
-        ];
-        session()->put('tanaman', $data);
+        // // Simpan semuanya ke dalam session
+        // $data = [
+        //     'nama_tanaman' => $request->nama_tanaman,
+        //     'gambar' => $namaBaru,
+        //     'urea' => $request->urea,
+        //     'ZA' => $request->ZA,
+        //     'TSP' => $request->TSP,
+        //     'SP36' => $request->SP36,
+        //     'KCL' => $request->KCL,
+        //     'MOP' => $request->MOP,
+        // ];
+        // session()->put('tanaman', $data);
 
-        // Simpan file dari gambar ke dalam cache
-        $key = $namaBaru;
-        $base64 = base64_encode(file_get_contents($gambar));
-        $expirationTime = 3600; // Waktu kedaluwarsa dalam detik (contoh: 60 detik)
-        Cache::put($key, $base64, $expirationTime);
+        // // Simpan file dari gambar ke dalam cache
+        // $key = $namaBaru;
+        // $base64 = base64_encode(file_get_contents($gambar));
+        // $expirationTime = 3600; // Waktu kedaluwarsa dalam detik (contoh: 60 detik)
+        // Cache::put($key, $base64, $expirationTime);
 
-        return redirect()->route('tanaman.tambah_tahapan');
+        // return redirect()->route('tanaman.tambah_tahapan');
     }
 
     public function tambah_tahapan()

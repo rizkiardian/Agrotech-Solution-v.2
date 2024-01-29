@@ -1,11 +1,11 @@
 @extends('layout.app')
 
-@section('title','Deteksi')
-    
+@section('title', 'Deteksi')
+
 @section('content')
-<div class="card ">
-    <h5 class="pb-1 mt-3 mx-auto"><b>Masukan gambar untuk mendapatkan hasil analisa hama dan tips penanganannya</b></h5>
-    <div class="card col-lg-4 mx-auto h-100">
+  <div class="card">
+    <h5 class="mx-auto mt-3 pb-1"><b>Masukan gambar untuk mendapatkan hasil analisa hama dan tips penanganannya</b></h5>
+    <div class="card col-lg-4 h-100 mx-auto">
       <img class="card-img-top" src="../assets/img/elements/hama.jpg" alt="Card image cap" />
     </div>
     <div class="card-body text-center">
@@ -49,7 +49,7 @@
 
         var reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = function(e) {
           $('.image-upload-wrap').hide();
 
           $('.file-upload-image').attr('src', e.target.result);
@@ -70,10 +70,10 @@
       $('.file-upload-content').hide();
       $('.image-upload-wrap').show();
     }
-    $('.image-upload-wrap').bind('dragover', function () {
+    $('.image-upload-wrap').bind('dragover', function() {
       $('.image-upload-wrap').addClass('image-dropping');
     });
-    $('.image-upload-wrap').bind('dragleave', function () {
+    $('.image-upload-wrap').bind('dragleave', function() {
       $('.image-upload-wrap').removeClass('image-dropping');
     });
   </script>

@@ -30,60 +30,33 @@ class TanamanController extends Controller
     public function index()
     {
         $tanaman = $this->TabelTanaman->all();
-        return view('user/pilih_tanaman', ['tanaman' => $tanaman]);
+        return view('user/tanaman/tanaman', ['tanaman' => $tanaman]);
     }
 
     public function budidaya(Request $request)
     {
-        $budidaya = $request->query('budidaya');
-        return view($budidaya . '/' . $budidaya);
+         // Ambil nilai parameter 'tanaman' dari URL
+        $id_tanaman = $request->query('tanaman');
+        $detail_budidaya = $this->TabelDetailBudidaya->get_budidaya($id_tanaman);
+        return view('user/tanaman/detail_budidaya', ['detail_budidaya' => $detail_budidaya]);
     }
 
     public function tahapan(Request $request)
     {
-        $tanaman = $request->query('tanaman');
-        $tahapan = $request->query('tahapan');
-        return view($tanaman . '/' . $tahapan);
+        $id_tanaman = $request->query('tanaman');
+        $id_budidaya = $request->query('budidaya');
+
+        // cari id_detail_budidaya terlebih dahulu
+        $detail_budidaya = $this->TabelDetailBudidaya->get_id_detail_budidaya($id_tanaman, $id_budidaya);
+        $tahapan_budidaya_saat_ini = $detail_budidaya->tahapan_budidaya->tahapan_budidaya;
+        $id_detail_budidaya = $detail_budidaya->id_detail_budidaya;
+
+        // setelah itu ambil seluruh data dari tabel detail_tahapan
+        $detail_tahapan = $this->TabelDetailTahapan->get_tahapan('id_detail_budidaya', $id_detail_budidaya);
+
+        // ambil seluruh data dari tabel budidaya
+        $tahapan_budidaya_semuanya = $this->TabelDetailBudidaya->get_budidaya($id_tanaman);
+
+        return view('user/tanaman/detail_tahapan', ['detail_tahapan' => $detail_tahapan, 'tahapan_budidaya_saat_ini' => $tahapan_budidaya_saat_ini, 'tahapan_budidaya_semuanya' => $tahapan_budidaya_semuanya]);
     }
-
-    public function pemeliharaan(Request $request)
-    {
-        $tanaman = $request->query('tanaman');
-        $tahapan = $request->query('tahapan');
-        $page = $request->query('page');
-        return view($tanaman . '/' . $tahapan . $page);
-    }
-
-    public function pembibitan(Request $request)
-    {
-        $tanaman = $request->query('tanaman');
-        $tahapan = $request->query('tahapan');
-        $page = $request->query('page');
-        return view($tanaman . '/' . $tahapan . $page);
-    }
-
-    // public function budidaya(Request $request)
-    // {
-    //     $id_tanaman = $request->query('page');
-    //     $tanaman = $this->TabelTanaman->find($id_tanaman);
-    //     $budidaya = $this->TabelDetailBudidaya
-    //         ->join('budidaya', 'detail_budidaya.id_budidaya', '=', 'budidaya.id_budidaya')
-    //         ->where('detail_budidaya.id_tanaman', $id_tanaman)
-    //         ->get();
-    //     return view('user/budidaya', ['tanaman' => $tanaman, 'budidaya' => $budidaya]);
-    // }
-
-    // public function tahapan(Request $request)
-    // {
-    //     $id_detail_budidaya = $request->query('page');
-    //     $budidaya = $this->TabelDetailBudidaya
-    //         ->join('budidaya', 'detail_budidaya.id_budidaya', '=', 'budidaya.id_budidaya')
-    //         ->where('detail_budidaya.id_detail_budidaya', $id_detail_budidaya)
-    //         ->first();
-    //     $tahapan = $this->TabelDetailTahapan
-    //         ->join('detail_budidaya', 'detail_tahapan.id_detail_budidaya', '=', 'detail_budidaya.id_detail_budidaya')
-    //         ->where('detail_tahapan.id_detail_budidaya', $id_detail_budidaya)
-    //         ->get();
-    //     return view('user/tahapan', ['budidaya' => $budidaya, 'tahapan' => $tahapan]);
-    // }
 }

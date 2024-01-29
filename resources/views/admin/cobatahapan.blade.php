@@ -190,89 +190,41 @@
           <!-- Content -->
           <div class="container-xxl flex-grow-1 container-p-y">
             <!-- Basic Layout -->
-            <form method="POST" action="tambah-detail_tahapan-proses" enctype="multipart/form-data">
+            <form method="POST" action="tambah-tanaman-proses" enctype="multipart/form-data">
               @csrf
-              <div class="row" id="formTahapanKegiatan">
-                <h4 class="fw-bold text-capitalize mb-4 py-3">
-                  <span class="text-muted fw-light"></span>
-                  Form Kegiatan
-                  {{ $judul_kegiatan }}
-                </h4>
-                <div class="col-xl">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col">
-                          <label for="formFile" class="form-label">
-                            Tambah Tahapan
-                          </label>
-                        </div>
-                        <div class="col">
-                          <button type="button" class="btn btn-primary float-end" id="tambah">
-                            Tambah
-                          </button>
-                        </div>
-                      </div>
+              <!-- Isi formulir halaman 3 -->
+              <div id="page3">
+                <!-- Template formulir halaman 3 -->
+                <div id="formTemplate">
+                  <div class="row" id="formTahapanKegiatan0">
+                    <h4 class="judul_kegiatan fw-bold text-capitalize mb-4 py-3">
+                      Form Kegiatan
+                    </h4>
+                    <div class="col-xl">
+                      <div class="card mb-4">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col">
+                              <label for="formFile" class="form-label">
+                                Tambah Tahapan
+                              </label>
+                            </div>
+                            <div class="col">
+                              <button type="button" class="btn btn-primary float-end" id="tambah">
+                                Tambah
+                              </button>
+                            </div>
+                          </div>
 
-                      <div class="mb-3" id="formContainer">
-                        <label class="form-label" for="basic-default-fullname">
-                          Waktu
-                        </label>
-                        <input type="text" class="form-control" name="waktu[]" placeholder="Tambah waktu"
-                          value="{{ old('waktu.0') }}" autofocus />
-                        <div>
-                          @error('waktu.0')
-                            <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                        </div>
-
-                        <label class="form-label" for="basic-default-fullname">
-                          Judul
-                        </label>
-                        <input type="text" class="form-control" name="judul[]" placeholder="Tambah Judul"
-                          value="{{ old('judul.0') }}" autofocus />
-                        <div>
-                          @error('judul.0')
-                            <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                        </div>
-
-                        <label class="form-label" for="formFile">
-                          Gambar Tanaman
-                        </label>
-                        <input class="form-control" type="file" required name="gambar[]" autofocus />
-                        <div>
-                          @error('gambar.0')
-                            <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                        </div>
-
-                        <label class="form-label" for="basic-default-fullname">
-                          Deskripsi
-                        </label>
-                        <textarea class="form-control" name="deskripsi[]" rows="3" autofocus>
-        {{ old('deskripsi.0') }}</textarea>
-                        <div>
-                          @error('deskripsi.0')
-                            <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                        </div>
-
-                        <hr style="height: 3px" />
-
-                        {{-- jika terjadi validasi yang error --}}
-                        @if ($errors->any())
-                          @for ($i = 1; $i < session('jumlah_inputan'); $i++)
+                          <div class="mb-3" id="formContainer">
                             <label class="form-label" for="basic-default-fullname">
                               Waktu
                             </label>
                             <input type="text" class="form-control" name="waktu[]" placeholder="Tambah waktu"
-                              value="{{ old('waktu.' . $i) }}" autofocus />
+                              value="{{ old('waktu.0') }}" autofocus />
                             <div>
-                              @error('waktu.' . $i)
-                                <span class="text-danger">
-                                  {{ $message }}
-                                </span>
+                              @error('waktu.0')
+                                <span class="text-danger">{{ $message }}</span>
                               @enderror
                             </div>
 
@@ -280,57 +232,104 @@
                               Judul
                             </label>
                             <input type="text" class="form-control" name="judul[]" placeholder="Tambah Judul"
-                              value="{{ old('judul.' . $i) }}" autofocus />
+                              value="{{ old('judul.0') }}" autofocus />
                             <div>
-                              @error('judul.' . $i)
-                                <span class="text-danger">
-                                  {{ $message }}
-                                </span>
+                              @error('judul.0')
+                                <span class="text-danger">{{ $message }}</span>
                               @enderror
                             </div>
 
                             <label class="form-label" for="formFile">
                               Gambar Tanaman
                             </label>
-                            <input class="form-control" type="file" required name="gambar[]" />
+                            <input class="form-control" type="file" name="gambar[]" autofocus />
                             <div>
-                              @error('gambar.' . $i)
-                                <span class="text-danger">
-                                  {{ $message }}
-                                </span>
+                              @error('gambar.0')
+                                <span class="text-danger">{{ $message }}</span>
                               @enderror
                             </div>
 
                             <label class="form-label" for="basic-default-fullname">
                               Deskripsi
                             </label>
-                            <textarea class="form-control" name="deskripsi[]" rows="3">
-        {{ old('deskripsi.' . $i) }}</textarea>
+                            <textarea class="form-control" name="deskripsi[]" rows="3" autofocus>{{ old('deskripsi.0') }}</textarea>
                             <div>
-                              @error('deskripsi.' . $i)
-                                <span class="text-danger">
-                                  {{ $message }}
-                                </span>
+                              @error('deskripsi.0')
+                                <span class="text-danger">{{ $message }}</span>
                               @enderror
                             </div>
 
-                            <div class="d-flex justify-content-center">
-                              <button type="button" class="btn btn-danger mt-2" onclick="hapusForm(this)">
-                                Hapus
-                              </button>
-                            </div>
                             <hr style="height: 3px" />
-                          @endfor
-                        @endif
-                      </div>
 
-                      <div class="d-flex justify-content-between mt-3">
-                        <button class="btn btn-outline-primary" id="Kembali">
-                          Kembali
-                        </button>
-                        <button type="submit" class="btn btn-primary" id="lanjut">
-                          Selanjutnya
-                        </button>
+                            {{-- jika terjadi validasi yang error --}}
+                            @if ($errors->any())
+                              @for ($i = 1; $i < session('jumlah_inputan'); $i++)
+                                <label class="form-label" for="basic-default-fullname">
+                                  Waktu
+                                </label>
+                                <input type="text" class="form-control" name="waktu[]" placeholder="Tambah waktu"
+                                  value="{{ old('waktu.' . $i) }}" autofocus />
+                                <div>
+                                  @error('waktu.' . $i)
+                                    <span class="text-danger">
+                                      {{ $message }}
+                                    </span>
+                                  @enderror
+                                </div>
+
+                                <label class="form-label" for="basic-default-fullname">
+                                  Judul
+                                </label>
+                                <input type="text" class="form-control" name="judul[]" placeholder="Tambah Judul"
+                                  value="{{ old('judul.' . $i) }}" autofocus />
+                                <div>
+                                  @error('judul.' . $i)
+                                    <span class="text-danger">
+                                      {{ $message }}
+                                    </span>
+                                  @enderror
+                                </div>
+
+                                <label class="form-label" for="formFile">
+                                  Gambar Tanaman
+                                </label>
+                                <input class="form-control" type="file" name="gambar[]" />
+                                <div>
+                                  @error('gambar.' . $i)
+                                    <span class="text-danger">
+                                      {{ $message }}
+                                    </span>
+                                  @enderror
+                                </div>
+
+                                <label class="form-label" for="basic-default-fullname">
+                                  Deskripsi
+                                </label>
+                                <textarea class="form-control" name="deskripsi[]" rows="3">{{ old('deskripsi.' . $i) }}</textarea>
+                                <div>
+                                  @error('deskripsi.' . $i)
+                                    <span class="text-danger">
+                                      {{ $message }}
+                                    </span>
+                                  @enderror
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                  <button type="button" class="btn btn-danger mt-2" onclick="hapusForm(this)">
+                                    Hapus
+                                  </button>
+                                </div>
+                                <hr style="height: 3px" />
+                              @endfor
+                            @endif
+                          </div>
+
+                          <div class="d-flex justify-content-between mt-3">
+                            <button type="button" onclick="previousPage(2)"
+                              class="btn btn-outline-primary">Previous</button>
+                            <button type="button" onclick="submitForm()" class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -370,45 +369,84 @@
   <!-- / Layout wrapper -->
 
   <!-- Core JS -->
+
   <script>
-    // Fungsi untuk menambahkan form baru
-    function tambahForm() {
-      var formContainer = document.getElementById("formContainer");
+    // Ambil data dari local storage
+    let storedData = localStorage.getItem('formData');
+    let formData = JSON.parse(storedData);
+    console.log(formData);
 
-      var div = document.createElement("div");
-      div.classList.add("form-item");
+    // Mengambil template formulir dari elemen dengan id "formTemplate"
+    const formContainer = document.getElementById('formTemplate'); // untuk menampung nantinya
+    const formTemplate = document.getElementById('formTemplate').innerHTML; // mengambil semua isi html di dalamnya
+    // ubah judul kegiatan
+    document.getElementsByClassName('judul_kegiatan')[0].innerHTML = formData.judul_tahapan[0];
 
-      div.innerHTML = `
-                <label class="form-label" for="basic-default-fullname">Waktu</label>
-                <input type="text" class="form-control" name="waktu[]" placeholder="Tambah waktu" />
+    // menghitung jumlah tahapan yang dipilih pada formData
+    let jumlahTahapan = formData.tahapan.length;
 
-                <label class="form-label" for="basic-default-fullname">Judul</label>
-                <input type="text" class="form-control" name="judul[]" placeholder="Tambah Judul" />
-
-                <label class="form-label" for="formFile">Gambar Tanaman</label>
-                <input class="form-control" type="file" required name="gambar[]" />
-
-                <label class="form-label" for="basic-default-fullname">Deskripsi</label>
-                <textarea class="form-control" name="deskripsi[]" rows="3"></textarea>
-
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-danger mt-2" onclick="hapusForm(this)">Hapus</button>
-                </div>
-                <hr style="height: 3px;">
-            `;
-
-      formContainer.appendChild(div);
+    // Menampilkan formulir sebanyak jumlah tahapan yang dipilih
+    for (let i = 1; i < jumlahTahapan; i++) {
+      // Menambahkan formulir ke formContainer
+      formContainer.innerHTML += formTemplate.replace(/formTahapanKegiatan0/g, `formTahapanKegiatan${i}`);
+      // ubah judul kegiatan
+      document.getElementsByClassName('judul_kegiatan')[i].innerHTML = formData.judul_tahapan[i];
     }
 
-    // Fungsi untuk menghapus form
-    function hapusForm(button) {
-      var formItem = button.parentNode.parentNode;
-      formItem.remove();
-    }
 
-    // Menambahkan event listener pada tombol "Tambah Form"
-    var tambahButton = document.getElementById("tambah");
-    tambahButton.addEventListener("click", tambahForm);
+
+
+
+    // document.getElementById(`page1`).style.display = 'block';
+    // document.getElementById(`page2`).style.display = 'none';
+    // document.getElementById(`page3`).style.display = 'none';
+
+    // // Data sementara formulir
+    // let formData = {};
+
+    // function nextPage(page) {
+    //   // Validasi atau manipulasi data jika diperlukan
+    //   // Simpan data ke variabel JavaScript sesuai halaman
+    //   if (page === 2) {
+    //     // karena pindah ke halaman 2 maka simpan data yang di halaman 1
+    //     formData.nama_tanaman = document.getElementsByName('nama_tanaman')[0].value;
+    //     formData.gambar = document.getElementsByName('gambar')[0].value;
+    //     formData.urea = document.getElementsByName('urea')[0].value;
+    //     formData.ZA = document.getElementsByName('ZA')[0].value;
+    //     formData.TSP = document.getElementsByName('TSP')[0].value;
+    //     formData.SP36 = document.getElementsByName('SP36')[0].value;
+    //     formData.KCL = document.getElementsByName('KCL')[0].value;
+    //     formData.MOP = document.getElementsByName('MOP')[0].value;
+    //   } else if (page === 3) {
+    //     // karena pindah ke halaman 3 maka simpan data yang di halaman 2
+    //     const checkboxes = document.getElementsByName('tahapan[]');
+    //     // Simpan nilai checkbox yang dipilih pada halaman kedua
+    //     formData.tahapan = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+
+    //     console.log(formData.tahapan);
+    //     // pindah url
+    //     window.location.href = '/tambah-tanaman?myVariable=' + formData.tahapan[0];
+    //   }
+
+    //   // Tampilkan halaman berikutnya
+    //   document.getElementById(`page${page - 1}`).style.display = 'none'; //halaman saat ini di hilangkan
+    //   document.getElementById(`page${page}`).style.display = 'block'; //halaman berikutnya di tampilkan
+    // }
+
+    // function previousPage(page) {
+    //   // Kembali ke halaman sebelumnya
+    //   document.getElementById(`page${page + 1}`).style.display = 'none'; //halaman saat ini di hilangkan
+    //   document.getElementById(`page${page}`).style.display = 'block'; //halaman sebelumnya di tampilkan
+    // }
+
+    // function submitForm() {
+    //   // Validasi atau manipulasi data jika diperlukan
+    //   // Simpan data ke variabel JavaScript
+    //   formData.fieldPage3 = document.getElementById('fieldPage3').value;
+
+    //   // Kirim formulir atau lakukan tindakan lainnya
+    //   // alert('Formulir berhasil disubmit! Data: ' + JSON.stringify(formData));
+    // }
   </script>
 
   <!-- build:js assets/vendor/js/core.js -->

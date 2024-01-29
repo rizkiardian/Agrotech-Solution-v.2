@@ -1,0 +1,2 @@
+mengapa butuh relasi belongto, hasmany di model?? karena untuk memperjelas hubungan tabel dalam model, dan bisa digunakan untuk mencari kolom dari tabel yang berelasi tapi cuman bisa satu baris (find)
+bagaimana caranya innerjoin?? dengan cara menuliskan inner() dalam function model agar lebih sedap dipakai hehe

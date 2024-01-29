@@ -33,21 +33,20 @@ Route::get('/reset-password/{token}', [AutentikasiController::class, 'showResetF
 Route::post('/reset-password', [AutentikasiController::class, 'reset'])->name('password.update');
 
 Route::get('/tambah-tanaman', [KelolaTanamanController::class, 'tambah'])->name('tanaman.tambah');
-Route::post('/tambah-tanaman-proses', [KelolaTanamanController::class, 'tambah_proses']);
+Route::get('/tambah-tanaman/detail-tahapan', [KelolaTanamanController::class, 'cobatahapan'])->name('tanaman.tambah_detatil_tahapannnnn');
+// Route::post('/tambahtanamanproses', [KelolaTanamanController::class, 'tambah_proses']);
+
 Route::get('/tambah-tahapan', [KelolaTanamanController::class, 'tambah_tahapan'])->name('tanaman.tambah_tahapan');
 Route::post('/tambah-tahapan-proses', [KelolaTanamanController::class, 'tahapan_proses']);
 Route::get('/tambah-detail_tahapan', [KelolaTanamanController::class, 'tambah_detail_tahapan'])->name('tanaman.tambah_detail_tahapan');
 Route::post('/tambah-detail_tahapan-proses', [KelolaTanamanController::class, 'detail_tahapan_proses']);
 
-Route::get('/perencanaan', [PerencanaanController::class, 'index'])->name('perencanaan');
-Route::post('/perencanaan-hitung', [PerencanaanController::class, 'hitung']);
-Route::get('/hasil', [PerencanaanController::class, 'hasil'])->name('hasil');
+Route::get('/perhitungan-pupuk', [PerencanaanController::class, 'index'])->name('perhitungan_pupuk');
+Route::post('/hasil-pupuk', [PerencanaanController::class, 'hasil_pupuk']);
 
 Route::get('/tanaman', [TanamanController::class, 'index'])->name('tanaman');
-Route::get('/budidaya', [TanamanController::class, 'budidaya'])->name('budidaya');
-Route::get('/tahapan', [TanamanController::class, 'tahapan'])->name('tahapan');
-Route::get('/pemeliharaan', [TanamanController::class, 'pemeliharaan'])->name('pemeliharaan');
-Route::get('/pembibitan', [TanamanController::class, 'pembibitan'])->name('pembibitan');
+Route::get('/tanaman/budidaya', [TanamanController::class, 'budidaya'])->name('budidaya');
+Route::get('/tanaman/tahapan', [TanamanController::class, 'tahapan'])->name('tahapan');
 
 Route::get('/deteksi-hama', [DeteksiHamaController::class, 'index'])->name('deteksi_hama');
 Route::get('/hasil-deteksi', [DeteksiHamaController::class, 'hasil'])->name('hasil_deteksi');
